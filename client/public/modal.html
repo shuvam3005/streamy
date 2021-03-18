@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Modal</title>
+		<style>
+			body {
+				padding: 0;
+				margin: 0;
+				box-sizing: border-box;
+			}
+			*,
+			*::before,
+			*::after {
+				box-sizing: inherit;
+			}
+			body {
+				font-family: Arial, Helvetica, sans-serif;
+				display: grid;
+				grid-template-columns: 1fr 6fr;
+			}
+			aside {
+				padding: 20px;
+				height: 100vh;
+				background-color: lightgreen;
+			}
+			main {
+				padding: 20px;
+				height: 100vh;
+				background-color: lightsteelblue;
+				text-align: center;
+			}
+			.modal {
+				display: none;
+			}
+			.modal__header {
+			}
+			.modal__btn--close {
+				font-size: 1.2rem;
+				float: right;
+				cursor: pointer;
+			}
+			.clr {
+				clear: both;
+			}
+			.modal__content {
+				width: 400px;
+				height: 200px;
+				background-color: lightyellow;
+				border: none;
+				border-radius: 1em;
+				padding: 40px;
+				text-align: center;
+				box-shadow: 0 5px 15px 2px rgb(44, 42, 42);
+			}
+			.modal.active {
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				background: rgba(0, 0, 0, 0.6);
+			}
+		</style>
+	</head>
+	<body>
+		<div class="modal">
+			<div class="modal__content">
+				<div class="modal__header">
+					<span class="modal__btn--close">&times;</span>
+					<div class="clr"></div>
+				</div>
+				<div class="moda__body">
+					<h1>This is a modal</h1>
+				</div>
+			</div>
+		</div>
+		<aside>
+			<h2>Side bar</h2>
+			<p>
+				Lorem ipsum dolor sit amet consectetur adipisicing elit.
+				Cupiditate, molestiae officiis rerum in dolores rem odio illo
+				ipsa vitae debitis dolore possimus eum quo alias veniam
+				accusantium aperiam eius laborum.
+			</p>
+		</aside>
+		<main>
+			<div>
+				<h1>Main Content</h1>
+				<p>
+					Lorem ipsum dolor sit amet consectetur adipisicing elit.
+					Velit quam rerum fugiat vitae repellat in non, distinctio,
+					porro, nulla ut reiciendis hic dolor aspernatur maxime
+					provident tempora officia! Nulla, quo.
+					<button class="btn">Click Me</button>
+				</p>
+			</div>
+		</main>
+		<script>
+			const openModalBtn = document.querySelector('.btn');
+			const closeModalBtn = document.querySelector('.modal__btn--close');
+			const modal = document.querySelector('.modal');
+
+			const toggleModal = function () {
+				const isActive = modal.classList.contains('active');
+
+				if (isActive) {
+					modal.classList.remove('active');
+				} else {
+					modal.classList.add('active');
+				}
+			};
+
+			openModalBtn.addEventListener('click', toggleModal);
+			closeModalBtn.addEventListener('click', toggleModal);
+			window.addEventListener('click', function (event) {
+				if (event.target === modal) {
+					modal.classList.remove('active');
+				}
+			});
+		</script>
+	</body>
+</html>
